@@ -21,6 +21,7 @@ let students = [{
 }]
 
 exports.getStudents = (req, res) => {
+  res.set('Cache-Control', 'public, max-age=300, s-max-age=600')
   res.send(students)
 }
 
@@ -30,5 +31,6 @@ exports.getStudentByName = (req, res) => {
     return stud.name.toLowerCase() === name.toLowerCase()
       || stud.last.toLowerCase() === name.toLowerCase()
   })
+  res.set('Cache-Control', 'public, max-age=300, s-max-age=600')
   res.send(results)
 }
